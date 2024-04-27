@@ -19,3 +19,6 @@ class HebbianLearning:
 
     def add_data(self):
         pass
+
+    def predict(self) :
+        pass
