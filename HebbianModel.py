@@ -1,3 +1,5 @@
+import numpy as np
+
 class HebbianLearning:
     def __init__(self):
         self.data_set = []
