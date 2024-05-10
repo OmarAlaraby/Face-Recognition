@@ -4,51 +4,84 @@ from PIL import Image, ImageTk
 import tkinter.filedialog as tkFileDialog
 import numpy as np
 import threading
+# from PCNN import PCNN_Model
 
 
-class FaceRecognition:
+class FaceRecognition :
     def __init__(self, root):
         self.window = root
         self.window.title('Face Recognition')
         self.window.minsize(700, 700)
-        self.window.geometry('1700x1000+150+100')
-        self.window.config(background='#120d38')
-        self.frame = Frame(root)
-        self.frame.pack(side=RIGHT, anchor=E, padx=120)
-        self.label = Label(self.frame, width=600, height=600, background='#5146ab')
-        self.label.pack()
-        self.cap = cv2.VideoCapture(0)
-        self.name = 'Uknown'
-        self.age = 'NA'
-        self.phoneNumber = 'NA'
+        self.window.geometry('1600x900+150+100')
+        self.window.config(background='#032024')
+        self.gender = None
+        self.accuracyRate = None
+        self.accuracy = None
+        self.results = None
+        self.image = None
+        self.frame = None
+        self.submitButton = None
+        self.selectButton = None
 
-    def updateFrame(self):
-        ret, frame_cv2 = self.cap.read()
-        if ret:
-            frame_cv2 = cv2.resize(frame_cv2, (580, 580))
-            img = cv2.cvtColor(frame_cv2, cv2.COLOR_BGR2RGB)
-            pil_img = Image.fromarray(img)
-            imgtk = ImageTk.PhotoImage(image=pil_img)
-            self.label.imgtk = imgtk
-            self.label.configure(image=imgtk)
-        self.window.after(10, self.updateFrame)
+    def imageUploader(self):
+        filename = tkFileDialog.askopenfilename(title="Select Image", filetypes=[("Image Files", "*.jpg *.jpeg *.png")])
+
+        if filename:
+            self.image = ImageTk.PhotoImage(Image.open(filename).resize((350, 350)))
+            self.frame.config(image=self.image)
+
+    def drawSquareShape(self):
+        leftBar = Canvas(self.window, width=1, height=580)
+        leftBar.place(x=750, y=120)
+        upperBar = Canvas(self.window, width=580, height=1)
+        upperBar.place(x=750, y=120)
+        rightBar = Canvas(self.window, width=1, height=580)
+        rightBar.place(x=1330, y=120)
+        bottomBar = Canvas(self.window, width=580, height=1)
+        bottomBar.place(x=750, y=700)
 
     def displayData(self) :
-        data = f'Name : {self.name} \n\nAge : {self.age} \n\nPhone Number : {self.phoneNumber}'
-        dataLabel = Label(self.window, text=data,
-                         font=("Arial", 32, "bold"),
-                         justify="left",
-                         foreground="white",
-                         background=self.window.cget("bg"))
-        dataLabel.pack(side=LEFT, anchor=NW, padx=100, pady=200)
+        self.image = ImageTk.PhotoImage(Image.open('images.png').resize((350, 350)))
+        self.frame = Label(self.window, image=self.image)
+        self.frame.photo = self.image
+        self.frame.place(x=250, y=150)
 
-    def recognizeFrame(self) :
-        pass
+        self.submitButton = Button(text="Submit", background='#29a9ba', relief=FLAT, cursor= "hand2",
+                              bd=0, highlightthickness=0, font=('Arial', 24, 'bold'), width=15)
+        self.submitButton.place(x=280, y=550)
+
+        self.selectButton = Button(text="Select Photo", background='#29a9ba', relief=FLAT, cursor= "hand2",
+                              bd=0, highlightthickness=0, font=('Arial', 24, 'bold'), width=15, command=self.imageUploader)
+        self.selectButton.place(x=280, y=610)
+
+        self.drawSquareShape()
+        result_title = Label(self.window, text='Results', background='#032024', foreground='#FFFFFF',
+                            font=('Arial', 24, 'bold'))
+        result_title.place(x=970, y=150)
+
+        split_line = Canvas(self.window, width=130, height=1)
+        split_line.place(x=970, y=200)
+
+        self.results = Label(self.window, text=f'Gender : {self.gender}', background='#032024', foreground='#FFFFFF',
+                            font=('Arial', 20, 'bold'))
+        self.results.place(x=780, y=250)
+
+        split_line = Canvas(self.window, width=500, height=1)
+        split_line.place(x=780, y=400)
+
+        accuracy_title = Label(self.window, text='Accuracy', background='#032024', foreground='#FFFFFF',
+                            font=('Arial', 24, 'bold'))
+        accuracy_title.place(x=970, y=420)
+
+        self.accuracy = Label(self.window, text=f'accuracy : {self.accuracyRate}', background='#032024', foreground='#FFFFFF',
+                            font=('Arial', 20, 'bold'))
+        self.accuracy.place(x=780, y=490)
+
+        split_line = Canvas(self.window, width=150, height=1)
+        split_line.place(x=970, y=460)
 
     def run(self) :
-        self.updateFrame()
         self.displayData()
-        self.recognizeFrame()
 
 
 def main():
