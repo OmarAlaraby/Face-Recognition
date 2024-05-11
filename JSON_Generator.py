@@ -6,15 +6,12 @@ def generate_json(images_folder, output_file):
     for filename in os.listdir(images_folder):
         if filename.lower().endswith((".jpg", ".jpeg", ".png")):
             image_path = os.path.join(images_folder, filename)
-            data.append({"path": image_path, "type": "Female"})
+            data.append({"path": image_path, "type": "Banana"})
 
     with open(output_file, 'w') as f:
-        json.dump(data, f, indent=4)  # Add indentation for readability
+        json.dump(data, f, indent=4)
 
-# Example usage
-images_folder = "Images/Women"  # Replace with your folder path
-output_file = "Data/women.json"
+images_folder = "Images/bananas"
+output_file = "Data/bananas.json"
 
 generate_json(images_folder, output_file)
-
-print(f"JSON file generated: {output_file}")
