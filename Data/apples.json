@@ -8,7 +8,27 @@
         "type": "Apple"
     },
     {
+        "path": "Images/apples/111_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/6.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/apple_pear.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/176_100.jpg",
+        "type": "Apple"
+    },
+    {
         "path": "Images/apples/apple-fruit-isolated-on-white-background-photo.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/0_100.jpg",
         "type": "Apple"
     },
     {
@@ -16,11 +36,63 @@
         "type": "Apple"
     },
     {
+        "path": "Images/apples/apple_apricot_peach_peach(flat)_pomegranate_pear_plum.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/1_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/r_1_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/r_187_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/r_124_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/apple_apricot_nectarine_peach_peach(flat)_pomegranate_pear_plum.jpg",
+        "type": "Apple"
+    },
+    {
         "path": "Images/apples/1000_F_176979696_hqfioFYq7pX13dmiu9ENrpsHZy1yM3Dt.jpg",
         "type": "Apple"
     },
     {
-        "path": "Images/apples/gettyimages-184276818-612x612.jpg",
+        "path": "Images/apples/apple.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/r_274_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/r_234_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/apple_apricot_peach_peach(flat)_pomegranate_pear_plum_3.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/2_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/272_100.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/apple_apricot_peach_peach(flat)_pomegranate_pear_plum_2.jpg",
+        "type": "Apple"
+    },
+    {
+        "path": "Images/apples/4.jpg",
         "type": "Apple"
     }
 ]

@@ -1,10 +1,58 @@
 [
     {
+        "path": "Images/bananas/71_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/Bananas(lady_finger)3.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/Bananas(lady_finger)2.jpg",
+        "type": "Banana"
+    },
+    {
         "path": "Images/bananas/panana.jpg",
         "type": "Banana"
     },
     {
+        "path": "Images/bananas/31_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/3.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/0_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/Bananas(lady_finger)5.jpg",
+        "type": "Banana"
+    },
+    {
         "path": "Images/bananas/images (1).jpeg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/r2_101_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/1_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/1_100 (1).jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/Bananas(lady_finger)4.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/r2_121_100.jpg",
         "type": "Banana"
     },
     {
@@ -16,11 +64,43 @@
         "type": "Banana"
     },
     {
+        "path": "Images/bananas/89_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/r2_74_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/2_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/0_100(1).jpg",
+        "type": "Banana"
+    },
+    {
         "path": "Images/bananas/c9a52ca0ee5abf616838c81525c0355f.jpg",
         "type": "Banana"
     },
     {
+        "path": "Images/bananas/r2_15_100.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/r2_171_100.jpg",
+        "type": "Banana"
+    },
+    {
         "path": "Images/bananas/images.jpeg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/Bananas(lady_finger)1.jpg",
+        "type": "Banana"
+    },
+    {
+        "path": "Images/bananas/r2_33_100.jpg",
         "type": "Banana"
     }
 ]

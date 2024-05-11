@@ -1,16 +1,14 @@
-import cv2
 from tkinter import *
 from PIL import Image, ImageTk
 import tkinter.filedialog as tkFileDialog
-import numpy as np
-import threading
-# from PCNN import PCNN_Model
+from Adaline import Adaline
+from utilities import load_data, preProcess
 
 
-class FaceRecognition :
+class fruitRecognition :
     def __init__(self, root):
         self.window = root
-        self.window.title('Face Recognition')
+        self.window.title('Fruit Recognition')
         self.window.minsize(700, 700)
         self.window.geometry('1600x900+150+100')
         self.window.config(background='#032024')
@@ -19,16 +17,29 @@ class FaceRecognition :
         self.accuracy = None
         self.results = None
         self.image = None
+        self.displayedImage = None
         self.frame = None
         self.submitButton = None
         self.selectButton = None
+        self.model = None
+
+    def trainModel(self):
+        X, Y = load_data()
+        self.model = Adaline(len(X[0]))
+        self.model.train(X, Y)
+
+    def recogniseImage(self):
+        image = preProcess(self.image)
+        result = self.model.predict(image)
+        self.results.config(text=f'Gender : {result}')
 
     def imageUploader(self):
         filename = tkFileDialog.askopenfilename(title="Select Image", filetypes=[("Image Files", "*.jpg *.jpeg *.png")])
 
         if filename:
-            self.image = ImageTk.PhotoImage(Image.open(filename).resize((350, 350)))
-            self.frame.config(image=self.image)
+            self.displayedImage = ImageTk.PhotoImage(Image.open(filename).resize((350, 350)))
+            self.image = Image.open(filename).resize((200, 200))
+            self.frame.config(image=self.displayedImage)
 
     def drawSquareShape(self):
         leftBar = Canvas(self.window, width=1, height=580)
@@ -41,13 +52,13 @@ class FaceRecognition :
         bottomBar.place(x=750, y=700)
 
     def displayData(self) :
-        self.image = ImageTk.PhotoImage(Image.open('images.png').resize((350, 350)))
-        self.frame = Label(self.window, image=self.image)
-        self.frame.photo = self.image
+        self.displayedImage = ImageTk.PhotoImage(Image.open('images.png').resize((350, 350)))
+        self.frame = Label(self.window, image=self.displayedImage)
+        self.frame.photo = self.displayedImage
         self.frame.place(x=250, y=150)
 
         self.submitButton = Button(text="Submit", background='#29a9ba', relief=FLAT, cursor= "hand2",
-                              bd=0, highlightthickness=0, font=('Arial', 24, 'bold'), width=15)
+                              bd=0, highlightthickness=0, font=('Arial', 24, 'bold'), width=15, command=self.recogniseImage)
         self.submitButton.place(x=280, y=550)
 
         self.selectButton = Button(text="Select Photo", background='#29a9ba', relief=FLAT, cursor= "hand2",
@@ -62,7 +73,7 @@ class FaceRecognition :
         split_line = Canvas(self.window, width=130, height=1)
         split_line.place(x=970, y=200)
 
-        self.results = Label(self.window, text=f'Gender : {self.gender}', background='#032024', foreground='#FFFFFF',
+        self.results = Label(self.window, text='Gender : Uknown', background='#032024', foreground='#FFFFFF',
                             font=('Arial', 20, 'bold'))
         self.results.place(x=780, y=250)
 
@@ -81,12 +92,13 @@ class FaceRecognition :
         split_line.place(x=970, y=460)
 
     def run(self) :
+        self.trainModel()
         self.displayData()
 
 
 def main():
     root = Tk()
-    app = FaceRecognition(root)
+    app = fruitRecognition(root)
     app.run()
     root.mainloop()
 
