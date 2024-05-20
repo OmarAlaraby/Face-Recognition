@@ -3,6 +3,9 @@ from PIL import Image, ImageTk
 import tkinter.filedialog as tkFileDialog
 from Adaline import Adaline
 from utilities import load_data, preProcess
+import matplotlib.pyplot as plt
+from utilities import fix
+
 
 
 class fruitRecognition :
@@ -22,16 +25,25 @@ class fruitRecognition :
         self.submitButton = None
         self.selectButton = None
         self.model = None
-
     def trainModel(self):
         X, Y = load_data()
         self.model = Adaline(len(X[0]))
         self.model.train(X, Y)
-
     def recogniseImage(self):
         image = preProcess(self.image)
         result = self.model.predict(image)
-        self.results.config(text=f'Gender : {result}')
+        self.results.config(text=f'Type : {result}')
+
+    def displayPlot(self):
+        plt.plot(self.model.errors)
+        plt.xlabel('')
+        plt.ylabel('')
+        plt.title('')
+        plt.show()
+    def getAccuracy(self):
+        X, Y = load_data()
+        acc = self.model.getAccuracy(X, Y)
+        self.accuracy.config(text=f'Accuracy : {acc}%')
 
     def imageUploader(self):
         filename = tkFileDialog.askopenfilename(title="Select Image", filetypes=[("Image Files", "*.jpg *.jpeg *.png")])
@@ -40,7 +52,6 @@ class fruitRecognition :
             self.displayedImage = ImageTk.PhotoImage(Image.open(filename).resize((350, 350)))
             self.image = Image.open(filename).resize((200, 200))
             self.frame.config(image=self.displayedImage)
-
     def drawSquareShape(self):
         leftBar = Canvas(self.window, width=1, height=580)
         leftBar.place(x=750, y=120)
@@ -50,7 +61,6 @@ class fruitRecognition :
         rightBar.place(x=1330, y=120)
         bottomBar = Canvas(self.window, width=580, height=1)
         bottomBar.place(x=750, y=700)
-
     def displayData(self) :
         self.displayedImage = ImageTk.PhotoImage(Image.open('images.png').resize((350, 350)))
         self.frame = Label(self.window, image=self.displayedImage)
@@ -73,7 +83,7 @@ class fruitRecognition :
         split_line = Canvas(self.window, width=130, height=1)
         split_line.place(x=970, y=200)
 
-        self.results = Label(self.window, text='Gender : Uknown', background='#032024', foreground='#FFFFFF',
+        self.results = Label(self.window, text='Type : Uknown', background='#032024', foreground='#FFFFFF',
                             font=('Arial', 20, 'bold'))
         self.results.place(x=780, y=250)
 
@@ -88,12 +98,21 @@ class fruitRecognition :
                             font=('Arial', 20, 'bold'))
         self.accuracy.place(x=780, y=490)
 
+        split_line = Canvas(self.window, width=500, height=1)
+        split_line.place(x=780, y=600)
+
         split_line = Canvas(self.window, width=150, height=1)
         split_line.place(x=970, y=460)
+
+        plotButton = Button(text="Display Plot", background='#29a9ba', relief=FLAT, cursor= "hand2",
+                              bd=0, highlightthickness=0, font=('Arial', 24, 'bold'), width=15, command=self.displayPlot)
+        plotButton.place(x=900, y=625)
+
 
     def run(self) :
         self.trainModel()
         self.displayData()
+        self.getAccuracy()
 
 
 def main():

@@ -29,3 +29,6 @@ def load_data():
         labels.append(0)
 
     return np.array(images), np.array(labels)
+
+def fix(input) :
+    return 1 if input >= 0 else -1

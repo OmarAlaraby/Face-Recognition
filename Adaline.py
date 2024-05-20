@@ -33,7 +33,7 @@ class Adaline:
         return np.mean(Y_hat == Y)
 
     def update_weights(self, X, Y_hat, Y) -> None:
-        errors = 2 * (Y - Y_hat)
+        errors = (Y - Y_hat)
         self.weights[:] += self.learning_rate * X.T.dot(errors)
         self.bias += self.learning_rate * errors.sum()
 
@@ -48,6 +48,17 @@ class Adaline:
             self.errors.append(MSE)
             self.classification_rate.append(self.calculate_classification_rate(Y_hat, Y) * 100)
 
+    def getAccuracy(self, X, Y):
+        correct = 0
+        for image, label in zip(X, Y) :
+            if self.test(image) == label :
+                correct += 1
+        return correct / len(X) * 100
+
+    def test(self, X):
+        prediction = self.activate(self.multiply(X) + self.bias)
+        return 1 if prediction == 1 else 0
+
     def predict(self, X):
         prediction = self.activate(self.multiply(X) + self.bias)
-        return 'Apple' if prediction == 1 else 'Banana'
+        return 'Apple' if prediction >= 1 else 'Banana'
